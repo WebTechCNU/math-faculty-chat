@@ -1,13 +1,7 @@
 from fastapi import FastAPI
 from pydantic import BaseModel
-from typing import List
 
-import tiktoken
 from langchain_openai import OpenAIEmbeddings
-import numpy as np
-import bs4
-from langchain_community.document_loaders import WebBaseLoader
-
 import os
 from dotenv import load_dotenv
 
