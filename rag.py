@@ -26,7 +26,7 @@ import pickle
 
 embd = OpenAIEmbeddings()
 
-def generate_rag_chain(model):
+def generate_rag_chain(model, previous_answers):
     # questions_db.append(question)
     with open(f"models/index.pkl", "rb") as f:
         stored_data = pickle.load(f)
@@ -43,7 +43,8 @@ def generate_rag_chain(model):
 
     Будь-ласка, дай якомога більше інформації!
     Не кажи слово 'контекст'
-    Запитання: {question}
+    Запитання: {question};
+    Попередні відповіді, які ти давав: {previous_answers}
     """
 
     prompt = ChatPromptTemplate.from_template(template)
@@ -52,7 +53,7 @@ def generate_rag_chain(model):
     llm = ChatOpenAI(model_name=model, temperature=0)
 
     rag_chain = (
-        {"context": retriever, "question": RunnablePassthrough()}
+        {"context": retriever, "question": RunnablePassthrough(), "previous_answers": previous_answers}
         | prompt
         | llm
         | StrOutputParser()

@@ -19,10 +19,11 @@ models = {'3': 'gpt-3.5-turbo', '4': 'gpt-4o'}
 
 class Question(BaseModel):
     text: str
+    previousAnswers: str
 
 @app.post("/4o/question")
 def add_question(question: Question):
-    rag_chain = generate_rag_chain(models['4'])
+    rag_chain = generate_rag_chain(models['4'], question.previousAnswers)
     result = rag_chain.invoke(question.text)
     return {"message": result}
 
@@ -30,6 +31,6 @@ def add_question(question: Question):
 
 @app.post("/3-5/question")
 def add_question(question: Question):
-    rag_chain = generate_rag_chain(models['3'])
+    rag_chain = generate_rag_chain(models['3'], question.previousAnswers)
     result = rag_chain.invoke(question.text)
     return {"message": result}
