@@ -4,6 +4,7 @@ const new_chat_button = document.querySelector(".new-chat");
 
 const user_menu = document.querySelector(".user-menu ul");
 const show_user_menu = document.querySelector(".user-menu button");
+let answers = []
 
 
 const models = document.querySelectorAll(".model-selector button");
@@ -76,9 +77,10 @@ async function simulateTyping(sender, fullText) {
 
 async function sendRequest(requestText) {
     resp = "";
-    await fetch("https://math-faculty-chat-production.up.railway.app/4o/question", 
+    await fetch("https://math-faculty-chat-production.up.railway.app/3-5/question", 
         {method: "POST", body: JSON.stringify({
-            text: requestText
+            text: requestText,
+            previousAnswers: answers.join(";")
     }),
     headers: {
       "Content-type": "application/json; charset=UTF-8"
@@ -97,6 +99,7 @@ async function sendMessage() {
 
     let output = await sendRequest(messageText); 
 
+    answers.push(output.message);
     setTimeout(() => {
         simulateTyping("assistant", output.message);
     }, 500);
