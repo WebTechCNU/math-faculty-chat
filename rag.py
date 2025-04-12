@@ -44,8 +44,8 @@ def generate_rag_chain(model, previous_answers):
     Будь-ласка, дай якомога більше інформації!
     Не кажи слово 'контекст'
     Запитання: {question};
-    Попередні відповіді, які ти давав: {previous_answers}
-    """
+    Попередні відповіді, які ти давав:
+    """ + previous_answers
 
     prompt = ChatPromptTemplate.from_template(template)
 
@@ -53,7 +53,7 @@ def generate_rag_chain(model, previous_answers):
     llm = ChatOpenAI(model_name=model, temperature=0)
 
     rag_chain = (
-        {"context": retriever, "question": RunnablePassthrough(), "previous_answers": previous_answers}
+        {"context": retriever, "question": RunnablePassthrough()}
         | prompt
         | llm
         | StrOutputParser()
