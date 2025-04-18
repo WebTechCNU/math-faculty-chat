@@ -36,8 +36,7 @@ def generate_rag_chain(model, previous_answers):
     retriever = vectorstore.as_retriever(search_kwargs={"k": 5}) # number of documents retrieved
 
     # Prompt
-    template = """Я є студентом або викладачем Чернівецького Національного 
-    Університету, дай відповідь на наступне запитання, використовуючи 
+    template = """Дай відповідь на наступне запитання, використовуючи 
     даний контекст:
     {context}
 
