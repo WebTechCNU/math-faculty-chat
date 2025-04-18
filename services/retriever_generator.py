@@ -28,7 +28,7 @@ class RetrieverGenerator:
 
         self.embd = OpenAIEmbeddings()
 
-        self.vectorstore = FAISS.load_local(folder_path="../models/", embeddings=self.embd, allow_dangerous_deserialization=True)
+        self.vectorstore = FAISS.load_local(folder_path="models/", embeddings=self.embd, allow_dangerous_deserialization=True)
 
         self.retriever = self.vectorstore.as_retriever(search_kwargs={"k": 5}) # number of documents retrieved
 

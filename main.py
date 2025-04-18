@@ -10,7 +10,7 @@ app = FastAPI()
 # CORS:
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["https://webtechcnu.github.io", "http://127.0.0.1:5500", "http://127.0.0.1:5501"],  # or use full URL like "https://example.com"
+    allow_origins=["https://webtechcnu.github.io", "http://127.0.0.1:5500", "http://127.0.0.1:5501"],  
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
