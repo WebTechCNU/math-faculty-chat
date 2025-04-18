@@ -26,9 +26,10 @@ login via github!
 **TODO**
 
 1. Context tracking
-2. Multiple models
+~2. Multiple models~
 3. Try fusion, recursive, step-back, etc.
 4. Web scraping (may be background job)
-5. 
+5. One good model, up to 25mb 
+6. 
 
 

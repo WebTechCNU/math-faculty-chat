@@ -26,14 +26,14 @@ import pickle
 
 embd = OpenAIEmbeddings()
 
-def generate_rag_chain(model, previous_answers):
+def generate_rag_chain(model, previous_answers, retriever):
     # questions_db.append(question)
-    with open(f"models/index.pkl", "rb") as f:
-        stored_data = pickle.load(f)
+    # with open(f"../models/index.pkl", "rb") as f:
+    #     stored_data = pickle.load(f)
 
-    vectorstore = FAISS.load_local(folder_path="models/", embeddings=embd, allow_dangerous_deserialization=True)
+    # vectorstore = FAISS.load_local(folder_path="../models/", embeddings=embd, allow_dangerous_deserialization=True)
 
-    retriever = vectorstore.as_retriever(search_kwargs={"k": 5}) # number of documents retrieved
+    # retriever = vectorstore.as_retriever(search_kwargs={"k": 5}) # number of documents retrieved
 
     # Prompt
     template = """Дай відповідь на наступне запитання, використовуючи 
